@@ -1,0 +1,1 @@
+The excel file is used to merge all available table in the chocolate raw dataset from kaggle. The merged tables were then cleaned and converted each table into .csv file for further data analyis in mySQL
