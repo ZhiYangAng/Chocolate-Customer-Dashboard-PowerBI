@@ -27,5 +27,5 @@ The project analysed customer demographics and products preferences for a global
 * [***/Dashboard***](./Dashboard/): Contains the final dashboard .pbix file.
 * [***/SQL Query***](./SQL%20Query/): Includes .sql scripts for table creation and data analysis.
 * [***/media***](./media/): Contains screenshots and the interactive GIF demo.
-* [***/data***](./data/): Contains [***cleaneddata***](./data/cleaneddata/) and [***Excel Power Query***](./data/Chocolate%20Power%20Query.xlsx) that merge from [***raw data***](./data/rawdata/). 
+* [***/data***](./data/): Contains [***cleaned data***](./data/cleaneddata/) and [***Excel Power Query***](./data/Chocolate%20Power%20Query.xlsx) that merge from [***raw data***](./data/rawdata/). 
 * **LICENSE**: MIT License for open-source transparency.
