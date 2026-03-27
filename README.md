@@ -15,8 +15,9 @@ The project analysed customer demographics and products preferences for a global
 * Track the potential growth opportunities across global cities based on revenue.
 
 ## **Methodology**
-Before we straight into the process of creating dashboard, here is the dashboard preview.
+Before we straight into the process of creating dashboard, here is the final dashboard preview......
 
+### **Preview of Interactive Dashboard**
 <p align="center">
   <img src="media/Dashboard%20Demo.gif" width="900" title="Interactive Power BI Demo">
   <br>
