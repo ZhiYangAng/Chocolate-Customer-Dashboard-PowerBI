@@ -1,7 +1,7 @@
 # **Chocolate Customer Dashboard**
 Data Pipeline: Excel Power Query (csv) ➜ MySQL Workbench ➜ Power BI Desktop
 
-***Disclaimer: The data is synthetic and designed to simulate of real life data analysis for business problem solving***
+***Disclaimer: The data is synthetic and designed to simulate real life data analysis for business problem solving***
 
 ## **Project Overview**
 <p align="justify">
