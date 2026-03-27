@@ -1,22 +1,22 @@
-#**Chocolate Customer Dashboard**
+# **Chocolate Customer Dashboard**
 
 Data Pipeline: Kaggle ➜ Excel ➜ MySQL ➜ Power BI
 
-##**Project Overview**
+## **Project Overview**
 
 
-##**Business Objectives**
+## **Business Objectives**
 
 
-##**Methodology**
+## **Methodology**
 
-###**Excel**
+### **Excel**
 
-###**MySQL**
+### **MySQL**
 
-###**Power BI**
+### **Power BI**
 
-##**Buisness Insights**
+## **Buisness Insights**
 
-##**Directories**
+## **Directories**
 
