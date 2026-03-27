@@ -1,12 +1,16 @@
 # **Chocolate Customer Dashboard**
+Data Pipeline: Excel Power Query (csv) ➜ MySQL Workbench ➜ Power BI Desktop
 
-Data Pipeline: Kaggle ➜ Excel ➜ MySQL ➜ Power BI
+***Disclaimer: The data is synthetic and designed to simulate of real life data analysis for business problem solving***
 
 ## **Project Overview**
-The project analysed customer demographic and products preferences 
+The project analysed customer demographics and products preferences for a global chocolate retailer. The final interactive dashboard provide actionable insights to support data-driven decision-making for marketing stategies and regional growth.
 
 ## **Business Objectives**
 
+* Identify customers' purchase behaviour and demographic trends.
+* Analyze top-performing chococolate by using DAX ranking measure.
+* Track the potential growth opportunities across global cities based on revenue.
 
 ## **Methodology**
 
@@ -18,5 +22,10 @@ The project analysed customer demographic and products preferences
 
 ## **Buisness Insights**
 
-## **Directories**
 
+## **Directories**
+[/Dashboard](./Dashboard/): Contains the final dashboard .pbix file.
+[/SQL_Query](./SQL%20Query/): Includes .sql scripts for table creation and data analysis.
+[/media](./media/): Contains screenshots and the interactive GIF demo.
+[/data](./data/): Contains [cleaneddata](./data/cleaneddata/) and [Excel Power Query](./data/Chocolate%20Power%20Query.xlsx) that merge from [raw data](./data/rawdata/). 
+LICENSE: MIT License for open-source transparency.
