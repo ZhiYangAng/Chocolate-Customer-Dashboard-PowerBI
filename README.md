@@ -16,7 +16,11 @@ The project analysed customer demographics and products preferences for a global
 
 ## **Methodology**
 Before we straight into the process of creating dashboard, here is the dashboard preview.
-![Dashboard Preview](media/Dashboard%20Demo.gif)
+
+<p align="center">
+  <img src="media/Dashboard%20Demo.gif" width="900" title="Interactive Power BI Demo">
+  <br>
+</p>
 
 ### **Excel**
 
