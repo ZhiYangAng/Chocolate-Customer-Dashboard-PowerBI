@@ -4,7 +4,9 @@ Data Pipeline: Excel Power Query (csv) ➜ MySQL Workbench ➜ Power BI Desktop
 ***Disclaimer: The data is synthetic and designed to simulate of real life data analysis for business problem solving***
 
 ## **Project Overview**
+<p align="justify">
 The project analysed customer demographics and products preferences for a global chocolate retailer. The final interactive dashboard provide actionable insights to support data-driven decision-making for marketing stategies and regional growth.
+</p>
 
 ## **Business Objectives**
 
