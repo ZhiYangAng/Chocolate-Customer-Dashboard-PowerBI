@@ -1,7 +1,22 @@
-# Chocolate-Customer-Dashboard-PowerBI
-An interactive dashboard providing deep insights on customer demographics and product preferences for a global chocolate retailer.
+#**Chocolate Customer Dashboard**
 
-## Ace
-### Ace
+Data Pipeline: Kaggle ➜ Excel ➜ MySQL ➜ Power BI
 
-#### Ace
+##**Project Overview**
+
+
+##**Business Objectives**
+
+
+##**Methodology**
+
+###**Excel**
+
+###**MySQL**
+
+###**Power BI**
+
+##**Buisness Insights**
+
+##**Directories**
+
