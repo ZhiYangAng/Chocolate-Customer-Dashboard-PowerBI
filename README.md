@@ -25,14 +25,14 @@ Before we straight into the process of creating dashboard, here is the final das
 </p>
 
 ### **Excel**
-The raw data were downloaded from Kaggle and loaded in Power Query via Excel to examine the data quality followed by conducting data preprocessing.
+The raw dataset was sourced from Kaggle and imported into Power Query to perform data quality assessments and initial preprocessing.
 <p align="center">
   <img src="media/excel/1.png" width="900" title="Successful Loaded">
   <br>
 </p>
 
 Here is the found data error:
-1. The country and city under stores table are not tally. (Assuming that the value in the city correct while country incorrect)
+1. The country and city values under stores table did not align. (Assuming that the cities mapped to the incorrect country)
 <p align="center">
   <img src="media/excel/2.png" width="900" title="Country_Error">
   <br>
@@ -51,18 +51,18 @@ The process of **preprocessing** applied in the power query are:
       else if [city]="Sydney" then "Australia"
       else if [city]="Toronto" then "Canada"
       else "Other")
-##### **Calendar**
+#### **Calendar**
 1. Added **Month Name**, **Day Name** and **Week of Year**
 2. Modified the **date** format from _"yyyy-mm-dd"_ into _"mm/dd/yyyy"_ (SQL date format)
 
 #### **Customers**
-1. Create the **loyalty_members?** by using custom columns to convert binary into "Yes" or "No". Then removed **loyalty_member**.
+1. Created the **loyalty_members?** by using custom columns to convert binary into "Yes" or "No". Then removed **loyalty_member**.
     
    ```powerquery
     = Table.AddColumn(#"Changed Type", "loyalty_member?",
        each if [loyalty_member]=1 then "Yes"
        else "No")
-2. Create **age_category** column by using custom column for categorized **age** into four different categories.
+2. Created **age_category** column by using custom column for categorized **age** into four different categories.
 
    ```powerquery
     = Table.AddColumn(#"Removed Columns", "age_category", each if [age] <= 25 then "1. Young Adult (18-25)"
@@ -72,11 +72,11 @@ The process of **preprocessing** applied in the power query are:
 3. Modified the **join_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
 #### **Products**
-1. Created full_product_name column to combine product_name, brand, category and weight_g into the format:
-      > *"brand" "product_name" ("category") - "weighted_g"g*
+1. Created full_product_name column to combine product_name, brand, category and weight_g
+      **Format**: > *"brand" "product_name" ("category") - "weighted_g"g*
     ```powerquery
     = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
-    ("&[category]&") - "& Text.From([weight_g]) & "g")"
+    ("&[category]&") - "& Text.From([weight_g]) & "g")
 #### **Sales**
 1. Modified the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
