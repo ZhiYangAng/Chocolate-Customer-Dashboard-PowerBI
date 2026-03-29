@@ -13,6 +13,7 @@ The project analysed customer demographics and products preferences for a global
 * Identify customers' purchase behaviour and demographic trends.
 * Analyze top-performing chococolate by using DAX ranking measure.
 * Track the potential growth opportunities across global cities based on revenue.
+---
 
 ## **Methodology**
 Before we straight into the process of creating dashboard, here is the final dashboard preview......
@@ -78,9 +79,10 @@ The process of **preprocessing** applied in the power query are:
     ("&[category]&") - "& Text.From([weight_g]) & "g")"
   
 #### **Sales**
-1. Modify the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
+1. Modified the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
 After preprocessing were done, every table or sheet was then converted to .csv file. These csv file will be imported into MySQL 8.0 Workbence CE for further data analysis.
+---
 
 ### **MySQL**
 
