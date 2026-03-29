@@ -34,9 +34,9 @@ Here is the found data error:
 1. The country and city under stores table are not tally. (Assuming that the value in the city correct while country incorrect)
 
 The process of preprocessing applied in the power query are:
-1. Remove the country column. Recreate the country column by using custom columns.
-    The custom column:
-   
+**Stores**
+1. Removed the country column. Recreated the country column by using custom columns.
+    The country column:
    ``` Power Query
    = Table.AddColumn(#"Filtered Rows", "country_name", each if [city] = "New York" then "USA"
       else if [city]="Melbourne" then "Australia"
@@ -46,10 +46,23 @@ The process of preprocessing applied in the power query are:
       else if [city]="Sydney" then "Australia"
       else if [city]="Toronto" then "Canada"
       else "Other")
-   
-3. 
-4. 
-
+**Calendar**
+1. Added Month Name, Day Name and Week of Year
+2. Modify the date format from "yyyy-mm-dd" into "mm/dd/yyyy" (SQL date format)
+**Customers**
+1. Create the loyalty_members? by using custom columns to convert binary into "Yes" or "No". Then removed loyalty_member.
+    The loyalty_members? column:
+   ``` Power Query
+    = Table.AddColumn(#"Changed Type", "loyalty_member?",
+       each if [loyalty_member]=1 then "Yes"
+       else "No")
+2. Create age_category column by using custom columns for categorized age into four different categories.
+   ``` Power Query
+    = Table.AddColumn(#"Removed Columns", "age_category", each if [age] <= 25 then "1. Young Adult (18-25)"
+      else if [age] <= 40 then "2. Adult (26-40)"
+      else if [age] <= 60 then "3. Middle-Aged (41-60)"
+      else "4. Senior Citizen (61+)")
+3. Modify the join_date format from "yyyy-mm-dd" into "mm/dd/yyyy" (SQL date format)
 ### **MySQL**
 
 ### **Power BI**
