@@ -74,12 +74,13 @@ The process of **preprocessing** applied in the power query are:
 #### **Products**
 1. Create full_product_name column to combine product_name, brand, category and weight_g into the format:
 
-    <p align="center"> 
-  _"brand" "product_name" ("category") - "weighted_g"g_
+    <p align="center">
+      "brand" "product_name" ("category") - "weighted_g"g
     </p>
 
-  ```powerquery
-= Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&" ("&[category]&") - "& Text.From([weight_g]) & "g")"
+    ```powerquery
+    = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&" ("&[category]&") - "& Text.From([weight_g]) & "g")"
+    
 #### **Sales**
 1. Modify the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
