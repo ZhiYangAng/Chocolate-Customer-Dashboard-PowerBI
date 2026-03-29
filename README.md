@@ -90,7 +90,7 @@ After preprocessing were done, every table or sheet was then converted to .csv f
 ### **MySQL**
 
 <p align="justify">
-I created a schema named retail_chocolate_syn in MySQL. Then, I created tables for importing data from csv files into mysql under `retail_chocolate_syn` schema. There is an additional table named country_metadata that function for dynamic flag feature which will covered in PowerBI section later. 
+I created a schema named retail_chocolate_syn in MySQL. Then, I created tables for importing data from csv files into mysql under <i>retail_chocolate_syn</i> schema. There is an additional table named country_metadata that function for dynamic flag feature which will covered in PowerBI section later. 
 </p>
 
 #### Example of creating table using SQL:
@@ -136,7 +136,7 @@ After tables were created, the csv files are required to copy into `C:\\ProgramD
     IGNORE 1 ROWS;
 ```
 We can check whether the data were sucessfully imported into mySQL by using
-**SQL Query:** > *SELECT * WHEN retail_chocolate_syn.table_name*
+**SQL Query**: > *SELECT * WHEN retail_chocolate_syn.table_name*
 
 The example of success data imported in mySQL:
 <p align="center">
