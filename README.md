@@ -36,8 +36,8 @@ Here is the found data error:
 The process of preprocessing applied in the power query are:
 1. Remove the country column. Recreate the country column by using custom columns.
     The custom column:
+   ``` Power Query
    <pre>
-   ``` m
    = Table.AddColumn(#"Filtered Rows", "country_name", each if [city] = "New York" then "USA"
       else if [city]="Melbourne" then "Australia"
       else if [city]="Berlin" then "Germany"
