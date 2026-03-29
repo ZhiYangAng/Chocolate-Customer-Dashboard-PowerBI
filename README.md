@@ -125,7 +125,7 @@ These are the data format used while creating the table.
 | INT | Whole number |
 | VARCHAR(_L_) | Variable Character where _L_ is maximum length of string|
 
-After tables were created, the csv files are required to copy into `C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads` directory for importing data into mySQL database.
+After tables were created, the csv files are required to copy into `C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads` directory for importing data into MySQL database.
 
 #### Example of importing data into the schema using SQL:
 ```sql
@@ -142,7 +142,7 @@ We can check whether the data were sucessfully imported into MySQL database by u
   FROM retail_chocolate_syn.table_name; # Change table_name according to which table you like to check for
 ```
 
-The example of success data imported in mySQL:
+The example of success data imported in MySQL:
 <p align="center">
   <img src="media/mysql/2.png" width="900" title="Done importing data">
   <br>
