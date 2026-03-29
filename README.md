@@ -42,7 +42,7 @@ The process of **preprocessing** applied in the power query are:
 
 #### **Stores**
 1. Removed the **country** column. Recreated the **country** column by using custom columns.
-  ```powerquery
+```powerquery
   = Table.AddColumn(#"Filtered Rows", "country_name", each if [city] = "New York" then "USA"
     else if [city]="Melbourne" then "Australia"
     else if [city]="Berlin" then "Germany"
@@ -51,7 +51,7 @@ The process of **preprocessing** applied in the power query are:
     else if [city]="Sydney" then "Australia"
     else if [city]="Toronto" then "Canada"
     else "Other")
-  ```
+```
 #### **Calendar**
 1. Added **Month Name**, **Day Name** and **Week of Year**
 2. Modified the **date** format from _"yyyy-mm-dd"_ into _"mm/dd/yyyy"_ (SQL date format)
