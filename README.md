@@ -53,6 +53,7 @@ The process of **preprocessing** applied in the power query are:
     else if [city]="Toronto" then "Canada"
     else "Other")
 ```
+
 #### **Calendar**
 1. Added **Month Name**, **Day Name** and **Week of Year**
 2. Modified the **date** format from _"yyyy-mm-dd"_ into _"mm/dd/yyyy"_ (SQL date format)
