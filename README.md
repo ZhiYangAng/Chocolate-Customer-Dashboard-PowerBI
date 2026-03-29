@@ -41,6 +41,15 @@ The process of **preprocessing** applied in the power query are:
 
 #### **Stores**
 1. Removed the **country** column. Recreated the **country** column by using custom columns.
+```powerquery
+= Table.AddColumn(#"Filtered Rows", "country_name", each if [city] = "New York" then "USA"
+else if [city]="Melbourne" then "Australia"
+else if [city]="Berlin" then "Germany"
+else if [city]="London" then "UK"
+else if [city]="Paris" then "France"
+else if [city]="Sydney" then "Australia"
+else if [city]="Toronto" then "Canada"
+else "Other")
     
    ```powerquery
    = Table.AddColumn(#"Filtered Rows", "country_name", each if [city] = "New York" then "USA"
@@ -53,7 +62,7 @@ The process of **preprocessing** applied in the power query are:
       else "Other")
 ##### **Calendar**
 1. Added **Month Name**, **Day Name** and **Week of Year**
-2. Modify the **date** format from _"yyyy-mm-dd"_ into _"mm/dd/yyyy"_ (SQL date format)
+2. Modified the **date** format from _"yyyy-mm-dd"_ into _"mm/dd/yyyy"_ (SQL date format)
 
 #### **Customers**
 1. Create the **loyalty_members?** by using custom columns to convert binary into "Yes" or "No". Then removed **loyalty_member**.
@@ -62,24 +71,25 @@ The process of **preprocessing** applied in the power query are:
     = Table.AddColumn(#"Changed Type", "loyalty_member?",
        each if [loyalty_member]=1 then "Yes"
        else "No")
-2. Create **age_category** column by using custom columns for categorized **age** into four different categories.
+2. Create **age_category** column by using custom column for categorized **age** into four different categories.
 
    ```powerquery
     = Table.AddColumn(#"Removed Columns", "age_category", each if [age] <= 25 then "1. Young Adult (18-25)"
       else if [age] <= 40 then "2. Adult (26-40)"
       else if [age] <= 60 then "3. Middle-Aged (41-60)"
       else "4. Senior Citizen (61+)")
-3. Modify the **join_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
+3. Modified the **join_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
 #### **Products**
-1. Create full_product_name column to combine product_name, brand, category and weight_g into the format:
+1. Created full_product_name column to combine product_name, brand, category and weight_g into the format by using custom column:
 
     <p align="center">
       "brand" "product_name" ("category") - "weighted_g"g
     </p>
 
     ```powerquery
-    = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&" ("&[category]&") - "& Text.From([weight_g]) & "g")"
+    = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
+    ("&[category]&") - "& Text.From([weight_g]) & "g")"
     
 #### **Sales**
 1. Modify the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
