@@ -58,7 +58,7 @@ The process of **preprocessing** applied in the power query are:
 
 #### **Customers**
 1. Created the **loyalty_members?** by using custom columns to convert binary into "Yes" or "No". Then removed **loyalty_member**.
-```powerquery
+```pq
     = Table.AddColumn(#"Changed Type", "loyalty_member?",
        each if [loyalty_member]=1 then "Yes"
        else "No")
@@ -119,9 +119,9 @@ The outcome of successful creating table under schema:
 These are the data format used while creating the table.
 | Data Type | Description |
 | :--- | :--- |
-| DATE | Date Format of _"mm/dd/yyyy"_|
-| DECIMAL(_P,S_) | The values have decimal where _P_ is total number of digits and _S_ is decimal point |
-| INT | The values are whole numbers |
+| DATE | Date format of _"mm/dd/yyyy"_|
+| DECIMAL(_P,S_) | Decimal value where _P_ is total number of digits and _S_ is decimal point |
+| INT | Whole number |
 | VARCHAR(_L_) | Variable Character where _L_ is maximum length of string|
 
 After tables were created, the csv files are required to copy into `C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads` directory for importing data into mySQL database.
