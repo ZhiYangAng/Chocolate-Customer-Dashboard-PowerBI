@@ -27,7 +27,7 @@ Before we straight into the process of creating dashboard, here is the final das
 ### **Excel**
 The raw dataset was sourced from [Kaggle](https://www.kaggle.com/datasets/ssssws/chocolate-sales-dataset-2023-2024/data) and imported into Power Query to perform data quality assessments and initial preprocessing.
 <p align="center">
-  <img src="media/excel/1.png" width="900" title="Successful Loaded">
+  <img src="media/excel/1.png" width="400" title="Successful Loaded">
   <br>
 </p>
 
