@@ -41,16 +41,6 @@ The process of **preprocessing** applied in the power query are:
 
 #### **Stores**
 1. Removed the **country** column. Recreated the **country** column by using custom columns.
-```powerquery
-= Table.AddColumn(#"Filtered Rows", "country_name", each if [city] = "New York" then "USA"
-else if [city]="Melbourne" then "Australia"
-else if [city]="Berlin" then "Germany"
-else if [city]="London" then "UK"
-else if [city]="Paris" then "France"
-else if [city]="Sydney" then "Australia"
-else if [city]="Toronto" then "Canada"
-else "Other")
-    
    ```powerquery
    = Table.AddColumn(#"Filtered Rows", "country_name", each if [city] = "New York" then "USA"
       else if [city]="Melbourne" then "Australia"
@@ -82,15 +72,11 @@ else "Other")
 
 #### **Products**
 1. Created full_product_name column to combine product_name, brand, category and weight_g into the format by using custom column:
-
-    <p align="center">
-      "brand" "product_name" ("category") - "weighted_g"g
-    </p>
-
+      >*"brand" "product_name" ("category") - "weighted_g"g*
     ```powerquery
     = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
     ("&[category]&") - "& Text.From([weight_g]) & "g")"
-    
+  
 #### **Sales**
 1. Modify the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
