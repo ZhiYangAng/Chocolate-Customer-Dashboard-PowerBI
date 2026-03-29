@@ -42,7 +42,6 @@ The process of **preprocessing** applied in the power query are:
 
 #### **Stores**
 1. Removed the **country** column. Recreated the **country** column by using custom columns.
-
 ```powerquery
   = Table.AddColumn(#"Filtered Rows", "country_name", each if [city] = "New York" then "USA"
     else if [city]="Melbourne" then "Australia"
@@ -53,7 +52,6 @@ The process of **preprocessing** applied in the power query are:
     else if [city]="Toronto" then "Canada"
     else "Other")
 ```
-
 #### **Calendar**
 1. Added **Month Name**, **Day Name** and **Week of Year**
 2. Modified the **date** format from _"yyyy-mm-dd"_ into _"mm/dd/yyyy"_ (SQL date format)
@@ -61,27 +59,28 @@ The process of **preprocessing** applied in the power query are:
 #### **Customers**
 1. Created the **loyalty_members?** by using custom columns to convert binary into "Yes" or "No". Then removed **loyalty_member**.
 ```powerquery
-    = Table.AddColumn(#"Changed Type", "loyalty_member?",
-       each if [loyalty_member]=1 then "Yes"
-       else "No")
+= Table.AddColumn(#"Changed Type", "loyalty_member?",
+  each if [loyalty_member]=1 then "Yes"
+  else "No")
 ```
 2. Created **age_category** column by using custom column for categorized **age** into four different categories.
 
-   ```powerquery
-    = Table.AddColumn(#"Removed Columns", "age_category", each if [age] <= 25 then "1. Young Adult (18-25)"
-      else if [age] <= 40 then "2. Adult (26-40)"
-      else if [age] <= 60 then "3. Middle-Aged (41-60)"
-      else "4. Senior Citizen (61+)")
-   ```
+```powerquery
+= Table.AddColumn(#"Removed Columns", "age_category", each if [age] <= 25 then "1. Young Adult (18-25)"
+  else if [age] <= 40 then "2. Adult (26-40)"
+  else if [age] <= 60 then "3. Middle-Aged (41-60)"
+  else "4. Senior Citizen (61+)")
+```
 3. Modified the **join_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
 #### **Products**
 1. Created full_product_name column to combine product_name, brand, category and weight_g
       **Format**: > *"brand" "product_name" ("category") - "weighted_g"g*
-    ```powerquery
-    = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
-    ("&[category]&") - "& Text.From([weight_g]) & "g")
-    ```
+```powerquery
+= Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
+  ("&[category]&") - "& Text.From([weight_g]) & "g")
+```
+
 #### **Sales**
 1. Modified the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
