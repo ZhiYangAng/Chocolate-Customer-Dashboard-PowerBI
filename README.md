@@ -86,6 +86,25 @@ After preprocessing were done, every table or sheet was then converted to .csv f
 
 ### **MySQL**
 
+I created a schema named retail_chocolate_syn in MySQL. Then, I created tables for importing data from csv files into mysql under retail_chocolate_syn schema. There is an additional table named country_metadata that function for dynamic flag feature which will covered in PowerBI section later. 
+
+Example of creating table using SQL:
+
+    CREATE TABLE sales (
+        order_id VARCHAR(50),
+        order_date DATE,
+        product_id VARCHAR(50),
+        store_id VARCHAR(50),
+        customer_id VARCHAR(50),
+        quantity INT,
+        unit_price DECIMAL(10,2),
+        discount DECIMAL(10,2),
+        revenue DECIMAL(10,2),
+        cost DECIMAL(10,2),
+        profit DECIMAL(10,2)
+    );
+    
+The rest sql code for creating table and importing data were available in [**SQL Query**](./SQL%20Query/) directory.
 ### **Power BI**
 
 ## **Buisness Insights**
