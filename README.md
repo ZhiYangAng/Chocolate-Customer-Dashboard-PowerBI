@@ -136,10 +136,10 @@ After tables were created, the csv files are required to copy into `C:\\ProgramD
     LINES TERMINATED BY '\r\n'
     IGNORE 1 ROWS;
 ```
-We can check whether the data were sucessfully imported into mySQL by using this SQL Query:
+We can check whether the data were sucessfully imported into MySQL database by using this SQL Query:
 ```sql
   SELECT *
-  FROM retail_chocolate_syn.sales;
+  FROM retail_chocolate_syn.table_name; # Change table_name according to which table you like to check for
 ```
 
 The example of success data imported in mySQL:
