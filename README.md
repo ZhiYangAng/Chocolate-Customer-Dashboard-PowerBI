@@ -58,7 +58,7 @@ The process of **preprocessing** applied in the power query are:
 
 #### **Customers**
 1. Created the **loyalty_members?** by using custom columns to convert binary into "Yes" or "No". Then removed **loyalty_member**.
-```pq
+```powerquery
     = Table.AddColumn(#"Changed Type", "loyalty_member?",
        each if [loyalty_member]=1 then "Yes"
        else "No")
