@@ -47,14 +47,18 @@ The process of preprocessing applied in the power query are:
       else if [city]="Sydney" then "Australia"
       else if [city]="Toronto" then "Canada"
       else "Other")
----
+
+
 **Calendar**
+
 1. Added Month Name, Day Name and Week of Year
 2. Modify the date format from "yyyy-mm-dd" into "mm/dd/yyyy" (SQL date format)
+
+
 **Customers**
 1. Create the loyalty_members? by using custom columns to convert binary into "Yes" or "No". Then removed loyalty_member.
     The loyalty_members? column:
-   ``` Power Query
+   ```powerquery
     = Table.AddColumn(#"Changed Type", "loyalty_member?",
        each if [loyalty_member]=1 then "Yes"
        else "No")
