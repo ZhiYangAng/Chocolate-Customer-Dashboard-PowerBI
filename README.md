@@ -32,6 +32,10 @@ The raw data were downloaded from Kaggle and loaded in Power Query via Excel to 
 
 Here is the found data error:
 1. The country and city under stores table are not tally. (Assuming that the value in the city correct while country incorrect)
+<p align="center">
+  <img src="media/excel/2.png" width="900" title="Country_Error">
+  <br>
+</p>
 
 The process of **preprocessing** applied in the power query are:
 
@@ -66,6 +70,20 @@ The process of **preprocessing** applied in the power query are:
       else if [age] <= 60 then "3. Middle-Aged (41-60)"
       else "4. Senior Citizen (61+)")
 3. Modify the **join_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
+
+#### **Products**
+1. Create full_product_name column to combine product_name, brand, category and weight_g into the format:
+      <p align="center"> 
+        _"brand" "product_name" ("category") - "weighted_g"g_
+      </p>
+
+   ```powerquery
+   = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "&      [product_name]&" ("&[category]&") - "& Text.From([weight_g]) & "g")"
+
+#### **Sales**
+1. Modify the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
+
+After preprocessing were done, every table or sheet was then converted to .csv file. These csv file will be imported into MySQL 8.0 Workbence CE for further data analysis.
 
 ### **MySQL**
 
