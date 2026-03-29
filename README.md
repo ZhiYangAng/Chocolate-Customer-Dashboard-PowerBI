@@ -35,7 +35,7 @@ Here is the found data error:
 
 The process of preprocessing applied in the power query are:
 
-####**Stores**
+#### **Stores**
 1. Removed the country column. Recreated the country column by using custom columns.
     The country column:
    ```powerquery
@@ -48,11 +48,11 @@ The process of preprocessing applied in the power query are:
       else if [city]="Toronto" then "Canada"
       else "Other")
    
-#####**Calendar**
+##### **Calendar**
 1. Added Month Name, Day Name and Week of Year
 2. Modify the date format from "yyyy-mm-dd" into "mm/dd/yyyy" (SQL date format)
 
-####**Customers**
+#### **Customers**
 1. Create the loyalty_members? by using custom columns to convert binary into "Yes" or "No". Then removed loyalty_member.
     The loyalty_members? column:
    ```powerquery
