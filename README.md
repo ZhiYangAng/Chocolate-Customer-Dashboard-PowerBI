@@ -90,7 +90,7 @@ After preprocessing were done, every table or sheet was then converted to .csv f
 ### **MySQL**
 
 <p align="justify">
-I created a schema named retail_chocolate_syn in MySQL. Then, I created tables for importing data from csv files into mysql under <i>retail_chocolate_syn</i> schema. There is an additional table named country_metadata that function for dynamic flag feature which will covered in PowerBI section later. 
+I created a schema named retail_chocolate_syn in MySQL database. Then, I created tables for importing data from csv files into MySQL under <i>retail_chocolate_syn</i> schema. There is an additional table named country_metadata which functioned as dynamic flag feature which will covered in PowerBI section later. 
 </p>
 
 #### Example of creating table using SQL:
@@ -111,7 +111,7 @@ I created a schema named retail_chocolate_syn in MySQL. Then, I created tables f
 ```
 The outcome of successful creating table under schema:
 <p align="center">
-  <img src="media/mysql/1.png" width="900" title="Done Creating Table">
+  <img src="media/mysql/1.png" width=400"" title="Done Creating Table">
   <br>
 </p>
 
