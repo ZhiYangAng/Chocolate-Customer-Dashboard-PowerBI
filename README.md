@@ -77,7 +77,6 @@ The process of **preprocessing** applied in the power query are:
     ```powerquery
     = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
     ("&[category]&") - "& Text.From([weight_g]) & "g")"
-  
 #### **Sales**
 1. Modified the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
