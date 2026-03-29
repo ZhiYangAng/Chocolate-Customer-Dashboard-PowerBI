@@ -82,6 +82,7 @@ The process of **preprocessing** applied in the power query are:
 1. Modified the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
 After preprocessing were done, every table or sheet was then converted to .csv file. These csv file will be imported into MySQL 8.0 Workbence CE for further data analysis.
+
 ---
 
 ### **MySQL**
