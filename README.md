@@ -71,8 +71,8 @@ The process of **preprocessing** applied in the power query are:
 3. Modified the **join_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
 #### **Products**
-1. Created full_product_name column to combine product_name, brand, category and weight_g into the format by using custom column:
-      >*"brand" "product_name" ("category") - "weighted_g"g*
+1. Created full_product_name column to combine product_name, brand, category and weight_g into the format:
+      ` *"brand" "product_name" ("category") - "weighted_g"g*
     ```powerquery
     = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
     ("&[category]&") - "& Text.From([weight_g]) & "g")"
