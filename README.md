@@ -47,8 +47,6 @@ The process of preprocessing applied in the power query are:
       else if [city]="Sydney" then "Australia"
       else if [city]="Toronto" then "Canada"
       else "Other")
-
-
 **Calendar**
 
 1. Added Month Name, Day Name and Week of Year
