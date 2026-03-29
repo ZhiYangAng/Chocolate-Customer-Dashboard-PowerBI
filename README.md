@@ -34,6 +34,7 @@ Here is the found data error:
 1. The country and city under stores table are not tally. (Assuming that the value in the city correct while country incorrect)
 
 The process of preprocessing applied in the power query are:
+
 **Stores**
 1. Removed the country column. Recreated the country column by using custom columns.
     The country column:
