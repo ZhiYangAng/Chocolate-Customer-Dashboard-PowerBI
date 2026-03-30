@@ -150,6 +150,51 @@ The example of success data imported in MySQL:
 
 The rest sql code for creating table and importing data were available in [**SQL Query**](./SQL%20Query/) directory.
 
+#### Data Analysis
+These are the insights I found while using MySQL:
+1. There is no significant different in verage revenue and average profit between loyalty members and non-members across all age groups. This implies that the current loyalty program is not driving higher spending per transaction.
+
+<p align="center">
+  <img src="media/mysql/3.png" width="900" title="Analysis 1">
+  <br>
+</p>
+
+2. The overall customers are from Middle-Aged (41-60) and Adults (26-40) while Senior Citizens (61+) exhibit the highest transaction per customer (TPC). The senior citizens are the most frequent buyers, proving to be loyal although they consist lesser volume in the customer base.
+
+<p align="center">
+  <img src="media/mysql/4.png" width="900" title="Analysis 2">
+  <br>
+</p>
+
+3. The distribution follow the same overall distribution stated in analysis no. 2 and remained consitent across all cities. Toronto shows the highest TPC across all age groups, indicated that the city have higher potential for further marketing event or expansion.
+
+For Australia and Canada country (Top 12 rows views): 
+<p align="center">
+  <img src="media/mysql/5.png" width="900" title="Analysis 3.1">
+  <br>
+</p>
+Top TPC fall in Canada (Top 10 row views):
+<p align="center">
+  <img src="media/mysql/6.png" width="900" title="Analysis 3.2">
+  <br>
+</p>
+
+4. The prefered shopping mode across all customers' age group are airport. This shows that customer like to purchase chocolate before taking flight or after arrival for snacks or last minute gift.
+
+<p align="center">
+  <img src="media/mysql/7.png" width="900" title="Analysis 4">
+  <br>
+</p>
+
+5. 'Mars Milk Chocolate 50% (Praline) - 80g', 'Cadbury Dark Chocolate 70% (Praline) - 100g' and 'Lindt Milk Chocolate 60% (Milk) - 100g' consistently rank in the top 3 favourite across age group based on their total revenue.
+
+<p align="center">
+  <img src="media/mysql/8.png" width="900" title="Analysis 5">
+  <br>
+</p>
+
+The executed SQL query were explained according the numbering under data analysis section. Here is the [link](./SQL%20Query/Explained%20Customer%20Analysis) to the sql file.
+
 ### **Power BI**
 
 ## **Buisness Insights**
