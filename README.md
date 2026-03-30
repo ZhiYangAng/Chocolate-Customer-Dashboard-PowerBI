@@ -42,7 +42,7 @@ The process of **preprocessing** applied in the power query are:
 
 #### **Stores**
 1. Removed the **country** column. Recreated the **country** column by using custom columns.
-  ```powerquery
+```powerquery
   = Table.AddColumn(#"Filtered Rows", "country_name", each if [city] = "New York" then "USA"
     else if [city]="Melbourne" then "Australia"
     else if [city]="Berlin" then "Germany"
@@ -51,7 +51,7 @@ The process of **preprocessing** applied in the power query are:
     else if [city]="Sydney" then "Australia"
     else if [city]="Toronto" then "Canada"
     else "Other")
-  ```
+```
 #### **Calendar**
 1. Added **Month Name**, **Day Name** and **Week of Year**
 2. Modified the **date** format from _"yyyy-mm-dd"_ into _"mm/dd/yyyy"_ (SQL date format)
@@ -59,27 +59,28 @@ The process of **preprocessing** applied in the power query are:
 #### **Customers**
 1. Created the **loyalty_members?** by using custom columns to convert binary into "Yes" or "No". Then removed **loyalty_member**.
 ```powerquery
-    = Table.AddColumn(#"Changed Type", "loyalty_member?",
-       each if [loyalty_member]=1 then "Yes"
-       else "No")
+= Table.AddColumn(#"Changed Type", "loyalty_member?",
+  each if [loyalty_member]=1 then "Yes"
+  else "No")
 ```
 2. Created **age_category** column by using custom column for categorized **age** into four different categories.
 
-   ```powerquery
-    = Table.AddColumn(#"Removed Columns", "age_category", each if [age] <= 25 then "1. Young Adult (18-25)"
-      else if [age] <= 40 then "2. Adult (26-40)"
-      else if [age] <= 60 then "3. Middle-Aged (41-60)"
-      else "4. Senior Citizen (61+)")
-   ```
+```powerquery
+= Table.AddColumn(#"Removed Columns", "age_category", each if [age] <= 25 then "1. Young Adult (18-25)"
+  else if [age] <= 40 then "2. Adult (26-40)"
+  else if [age] <= 60 then "3. Middle-Aged (41-60)"
+  else "4. Senior Citizen (61+)")
+```
 3. Modified the **join_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
 #### **Products**
 1. Created full_product_name column to combine product_name, brand, category and weight_g
       **Format**: > *"brand" "product_name" ("category") - "weighted_g"g*
-    ```powerquery
-    = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
-    ("&[category]&") - "& Text.From([weight_g]) & "g")
-    ```
+```powerquery
+= Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
+  ("&[category]&") - "& Text.From([weight_g]) & "g")
+```
+
 #### **Sales**
 1. Modified the **order_date** format from _"yyyy-mm-dd_" into _"mm/dd/yyyy"_ (SQL date format)
 
@@ -90,7 +91,7 @@ After preprocessing were done, every table or sheet was then converted to .csv f
 ### **MySQL**
 
 <p align="justify">
-I created a schema named retail_chocolate_syn in MySQL. Then, I created tables for importing data from csv files into mysql under `retail_chocolate_syn` schema. There is an additional table named country_metadata that function for dynamic flag feature which will covered in PowerBI section later. 
+I created a schema named retail_chocolate_syn in MySQL database. Then, I created tables for importing data from csv files into MySQL under <i>retail_chocolate_syn</i> schema. There is an additional table named country_metadata which functioned as dynamic flag feature which will covered in PowerBI section later. 
 </p>
 
 #### Example of creating table using SQL:
@@ -111,7 +112,7 @@ I created a schema named retail_chocolate_syn in MySQL. Then, I created tables f
 ```
 The outcome of successful creating table under schema:
 <p align="center">
-  <img src="media/mysql/1.png" width="900" title="Done Creating Table">
+  <img src="media/mysql/1.png" width=400"" title="Done Creating Table">
   <br>
 </p>
 
@@ -119,12 +120,12 @@ The outcome of successful creating table under schema:
 These are the data format used while creating the table.
 | Data Type | Description |
 | :--- | :--- |
-| DATE | Date Format of _"mm/dd/yyyy"_|
-| DECIMAL(_P,S_) | The values have decimal where _P_ is total number of digits and _S_ is decimal point |
-| INT | The values are whole numbers |
+| DATE | Date format of _"mm/dd/yyyy"_|
+| DECIMAL(_P,S_) | Decimal value where _P_ is total number of digits and _S_ is decimal point |
+| INT | Whole number |
 | VARCHAR(_L_) | Variable Character where _L_ is maximum length of string|
 
-After tables were created, the csv files are required to copy into `C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads` directory for importing data into mySQL database.
+After tables were created, the csv files are required to copy into `C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads` directory for importing data into MySQL database.
 
 #### Example of importing data into the schema using SQL:
 ```sql
@@ -135,16 +136,64 @@ After tables were created, the csv files are required to copy into `C:\\ProgramD
     LINES TERMINATED BY '\r\n'
     IGNORE 1 ROWS;
 ```
-We can check whether the data were sucessfully imported into mySQL by using
-**SQL Query:** > *SELECT * WHEN retail_chocolate_syn.table_name*
+We can check whether the data were sucessfully imported into MySQL database by using this SQL Query:
+```sql
+  SELECT *
+  FROM retail_chocolate_syn.table_name; # Change table_name according to which table you like to check for
+```
 
-The example of success data imported in mySQL:
+The example of success data imported in MySQL:
 <p align="center">
   <img src="media/mysql/2.png" width="900" title="Done importing data">
   <br>
 </p>
 
 The rest sql code for creating table and importing data were available in [**SQL Query**](./SQL%20Query/) directory.
+
+#### Data Analysis
+These are the insights I found while using MySQL:
+1. There is no significant different in verage revenue and average profit between loyalty members and non-members across all age groups. This implies that the current loyalty program is not driving higher spending per transaction.
+
+<p align="center">
+  <img src="media/mysql/3.png" width="900" title="Analysis 1">
+  <br>
+</p>
+
+2. The overall customers are from Middle-Aged (41-60) and Adults (26-40) while Senior Citizens (61+) exhibit the highest transaction per customer (TPC). The senior citizens are the most frequent buyers, proving to be loyal although they consist lesser volume in the customer base.
+
+<p align="center">
+  <img src="media/mysql/4.png" width="900" title="Analysis 2">
+  <br>
+</p>
+
+3. The distribution follow the same overall distribution stated in analysis no. 2 and remained consitent across all cities. Toronto shows the highest TPC across all age groups, indicated that the city have higher potential for further marketing event or expansion.
+
+For Australia and Canada country (Top 12 rows views): 
+<p align="center">
+  <img src="media/mysql/5.png" width="900" title="Analysis 3.1">
+  <br>
+</p>
+Top TPC fall in Canada (Top 10 row views):
+<p align="center">
+  <img src="media/mysql/6.png" width="900" title="Analysis 3.2">
+  <br>
+</p>
+
+4. The prefered shopping mode across all customers' age group are airport. This shows that customer like to purchase chocolate before taking flight or after arrival for snacks or last minute gift.
+
+<p align="center">
+  <img src="media/mysql/7.png" width="900" title="Analysis 4">
+  <br>
+</p>
+
+5. 'Mars Milk Chocolate 50% (Praline) - 80g', 'Cadbury Dark Chocolate 70% (Praline) - 100g' and 'Lindt Milk Chocolate 60% (Milk) - 100g' consistently rank in the top 3 favourite across age group based on their total revenue.
+
+<p align="center">
+  <img src="media/mysql/8.png" width="900" title="Analysis 5">
+  <br>
+</p>
+
+The executed SQL query were explained according the numbering under data analysis section. Here is the [link](./SQL%20Query/Explained%20Customer%20Analysis) to the sql file.
 
 ### **Power BI**
 
