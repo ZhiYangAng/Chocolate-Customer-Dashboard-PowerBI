@@ -193,7 +193,7 @@ Top TPC fall in Canada (Top 10 row views):
   <br>
 </p>
 
-The executed SQL query were explained according the numbering under data analysis section. Here is the [link](./SQL%20Query/Explained%20Customer%20Analysis) to the sql file.
+The executed SQL query were explained according the numbering under data analysis section. Here is the [link](./SQL%20Query/Explained%20Customer%20Analysis.sql) to the sql file.
 
 ### **Power BI**
 
