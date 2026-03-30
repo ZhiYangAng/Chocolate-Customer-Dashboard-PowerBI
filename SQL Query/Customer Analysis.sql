@@ -99,7 +99,7 @@ GROUP BY
 ORDER BY
 	c.age_category, number_of_transaction DESC;
 
-# Only Return rank one number_of_transaction (AI help)
+# Only Return rank one number_of_transaction
 WITH ShoppingStats AS (
     SELECT
         c.age_category, 
