@@ -195,10 +195,26 @@ Top TPC fall in Canada (Top 10 row views):
 
 The executed SQL query were explained according the numbering under data analysis section. Here is the [link](./SQL%20Query/Explained%20Customer%20Analysis.sql) to the sql file.
 
+---
+
 ### **Power BI**
+The data were imported from MySQL database to create interactive PowerBI dashboard. This allow the data refresh when there is any change or update in the corresponding table in MySQL.
 
-## **Buisness Insights**
+`Get Data` (in **Data** ribbon under **Home** tab) > `More...` > `MySQL database`
 
+#### Data Modelling (Star Schema)
+
+#### Dashboard Layout
+
+##### Card
+
+##### Slicer
+
+##### Main Body (Chart)
+
+#### Buisness Insights
+
+---
 
 ## **Directories**
 * [***/Dashboard***](./Dashboard/): Contains the final dashboard .pbix file.
