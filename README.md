@@ -225,7 +225,7 @@ _green = unique key_
 | **Country** _Metadata_ (country_name) ➜ **Stores** (_country_name_) | one to many ( _1 : *_ )|
 
 #### Dashboard Layout
-The interactive dashboard consists of 4 different metric card, a dynamic flag indicator, country slicer with button, 5 different chart in the main body.
+The interactive dashboard consists of 4 different metric card, a dynamic flag indicator, city slicer with button, 5 different chart in the main body.
 
 <p align="center">
   <img src="media/powerbi/2.png" width="900" title="Dashboard">
@@ -236,18 +236,18 @@ The interactive dashboard consists of 4 different metric card, a dynamic flag in
 
 Here are the 4 measures used in the card visuals.
 
-```dax
+```sql
 Total Customers = DISTINCTCOUNT('retail_chocolate_syn sales'[customer_id])
 // DISTINCTCOUNT() = does not include duplicate count
 ```
-```dax
+```sql
 total_revenue = SUM('retail_chocolate_syn sales'[revenue])
 ```
-```dax
+```sql
 TPC = DIVIDE(COUNT('retail_chocolate_syn sales'[order_id]),Total Customers,0)
 // DIVIDE(X,Y,Z) = X Divide Y, Z if error
 ```
-```dax
+```sql
 RPC = DIVIDE([total_revenue],Total Customers,0)
 ```
 
@@ -264,6 +264,32 @@ RPC = DIVIDE([total_revenue],Total Customers,0)
 </p>
 
 ##### Slicer + Dynamic Flag Indicator
+
+The city slicer with tiles were used. The dynamic flag indicator located on top of the city slicer. This indicator was made by multi-row card with field of a Dax measure named Dynamic Flag.
+
+```sql
+Dynamic Flag = 
+IF(
+    HASONEVALUE('retail_chocolate_syn stores'[country_name]),
+    /* HASONEVALUE() return true when country were filtered down only one distinct country by city slicer*/
+
+    LOOKUPVALUE('retail_chocolate_syn country_metadata'[flag_url],
+    'retail_chocolate_syn country_metadata'[country_name],
+    VALUES('retail_chocolate_syn stores'[country_name])),
+    /* LOOKUPVALUE(X,Y,Z) search flag_url (X), by matching country name (Y) value in the same table as X with country name (Z) from another table.
+     VALUES() used to convert filtered column into a single search term.*/
+
+    "https://www.worldmap1.com/map/world/amp/world_map_with_countries.jpg"
+    /* Display global map as default if no specific city filter is applied */
+)
+```
+
+The indicator will show corresponding country flag based on city filtered using slicer. For example, Canada flag will show up if Toronto was selected in the slicer. However, if there is no city or more than two cities were filtered, it will returned a global map as the indicator.
+
+<p align="center">
+  <img src="media/powerbi/1.gif" height="400" title="slicer">
+  <br>
+</p>
 
 ##### Main Body (Chart)
 
