@@ -203,12 +203,67 @@ The data were imported from MySQL database to create interactive PowerBI dashboa
 `Get Data` (in **Data** ribbon under **Home** tab) > `More...` > `MySQL database`
 
 #### Data Modelling (Star Schema)
+Fact Table (Center): Sales
+Dimension Table: Customers, Products, Stores, Calendar
+Extra Table: Country Metadata
+
+<p align="center">
+  <img src="media/powerbi/1.png" width="900" title="Star Schema">
+  <br>
+</p>
+
+_yellow = foreign key_
+
+_green = unique key_
+
+| Table Relationship | Direction | 
+| :--- | :--- |
+| **Customers** (_customer_id_) ➜ **Sales** (_customer_id_) | one to many ( _1 : *_ )|
+| **Products** (_product_id_) ➜ **Sales** (_product_id_) | one to many ( _1 : *_ ) |
+| **Calendar** (_date_) ➜ **Sales** (_order_date_) | one to many ( _1 : *_ ) |
+| **Stores** (_store_id_) ➜ **Sales** (_store_id_) | one to many ( _1 : *_ )|
+| **Country** _Metadata_ (country_name) ➜ **Stores** (_country_name_) | one to many ( _1 : *_ )|
 
 #### Dashboard Layout
+The interactive dashboard consists of 4 different metric card, a dynamic flag indicator, country slicer with button, 5 different chart in the main body.
+
+<p align="center">
+  <img src="media/powerbi/2.png" width="900" title="Dashboard">
+  <br>
+</p>
 
 ##### Card
 
-##### Slicer
+Here are the 4 measures used in the card visuals.
+
+```dax
+Total Customers = DISTINCTCOUNT('retail_chocolate_syn sales'[customer_id])
+// DISTINCTCOUNT() = does not include duplicate count
+```
+```dax
+total_revenue = SUM('retail_chocolate_syn sales'[revenue])
+```
+```dax
+TPC = DIVIDE(COUNT('retail_chocolate_syn sales'[order_id]),Total Customers,0)
+// DIVIDE(X,Y,Z) = X Divide Y, Z if error
+```
+```dax
+RPC = DIVIDE([total_revenue],Total Customers,0)
+```
+
+| Card Metric | Description |
+| :--- | :--- |
+| **Total Customers** | Unique customer count between _2023-2024_|
+| **Total Revenue** | Gross sales between _2023-2024_|
+| **Transaction per Customer (TPC)** | _Purchase frequency index_; measures how often customers buys between _2023-2024_|
+| **Revenue per Customer (RPC)**| _Customer Lifetime Value (CLV)_; measure average spending per customer between  _2023-2024_|
+
+<p align="center">
+  <img src="media/powerbi/3.png" width="900" title="Cards">
+  <br>
+</p>
+
+##### Slicer + Dynamic Flag Indicator
 
 ##### Main Body (Chart)
 
