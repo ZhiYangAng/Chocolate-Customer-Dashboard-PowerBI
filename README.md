@@ -27,7 +27,7 @@ Before we straight into the process of creating dashboard, here is the final das
 ### **Excel**
 The raw dataset was sourced from [Kaggle](https://www.kaggle.com/datasets/ssssws/chocolate-sales-dataset-2023-2024/data) and imported into Power Query to perform data quality assessments and initial preprocessing.
 <p align="center">
-  <img src="media/excel/1.png" width="400" title="Successful Loaded">
+  <img src="media/excel/1.png" height="400" title="Successful Loaded">
   <br>
 </p>
 
@@ -112,7 +112,7 @@ I created a schema named retail_chocolate_syn in MySQL database. Then, I created
 ```
 The outcome of successful creating table under schema:
 <p align="center">
-  <img src="media/mysql/1.png" width=400"" title="Done Creating Table">
+  <img src="media/mysql/1.png" height=400"" title="Done Creating Table">
   <br>
 </p>
 
@@ -203,9 +203,9 @@ The data were imported from MySQL database to create interactive PowerBI dashboa
 `Get Data` (in **Data** ribbon under **Home** tab) > `More...` > `MySQL database`
 
 #### Data Modelling (Star Schema)
-Fact Table (Center): Sales
-Dimension Table: Customers, Products, Stores, Calendar
-Extra Table: Country Metadata
+* Fact Table (Center): Sales
+* Dimension Table: Customers, Products, Stores, Calendar
+* Extra Table: Country Metadata
 
 <p align="center">
   <img src="media/powerbi/1.png" width="900" title="Star Schema">
@@ -277,7 +277,7 @@ IF(
     'retail_chocolate_syn country_metadata'[country_name],
     VALUES('retail_chocolate_syn stores'[country_name])),
     /* LOOKUPVALUE(X,Y,Z) search flag_url (X), by matching country name (Y) value in the same table as X with country name (Z) from another table.
-     VALUES() used to convert filtered column into a single search term.*/
+     VALUES() used to convert filtered column into a list.*/
 
     "https://www.worldmap1.com/map/world/amp/world_map_with_countries.jpg"
     /* Display global map as default if no specific city filter is applied */
@@ -292,6 +292,100 @@ The indicator will show corresponding country flag based on city filtered using 
 </p>
 
 ##### Main Body (Chart)
+_The dashboard highlight the relationship between loyalty programs, demographics, and purchasing patterns._
+
+1. **How many loyalty member?** (_Donut chart_)
+* **Purpose**: Visualizes the **distribution** of customers between **loyalty members** (_Yellow_) and **non members** (_Red_). This serves as a baseline for understanding the reach of the current membership program.
+2. **How much revenue per transaction?** (_Vertical Bar Chart_)
+* **Purpose**: Compares the **Average Transaction Value** (_ATV_) between member types. It highlights whether loyalty programs successfully drive higher spending per transaction or remains consistent across member types.
+3. **Favourite Shopping modes?** (_Tree Map_)
+* **Purpose**: Displays the **hierarchy of shopping modes**. The visual helps to identify customer preferences, allowing for targeted marketing strategies on the most effective shopping platforms.
+4. **Who are our chocolate lovers?** (_Horizontal stack bar Chart)_
+* **Purpose**: Categorise customer base into **four age categories**, and further segmented by **loyalty status**. This identifies which age group has the highest engagement with the brand and the loyalty program.
+5. **Top 3 favorite chocolates by age group?** (_Matrix_)
+* **Purpose**: Determine the **highest-revenue chocolate products** across different age group. This matrix reveals specific product preferences within age groups, enabling targeted marketing and inventory optimization.
+* The measure for Top 3 Revenue:
+```sql
+Top 3 Revenue = 
+VAR ProductRank = 
+    IF(
+        ISINSCOPE('retail_chocolate_syn products'[Full Product Name]),
+        RANKX(
+            CALCULATETABLE(
+                VALUES('retail_chocolate_syn products'[Full Product Name]),
+                ALLSELECTED('retail_chocolate_syn products'[Full Product Name])
+            ),
+            [total_revenue],
+            ,
+            DESC,
+            Dense
+        ),
+        BLANK()
+    )
+RETURN
+IF(ProductRank <= 3, [total_revenue], BLANK())
+```
+Here are the explanation of DAX expression works:
+| Dax Expression | Parameter(s) | Description |
+| :--- | :--- | :--- |
+| **VAR** | _VAR X_ | Create variable "_X_" with measure so it can be reused in final calculation. |
+| **ISINSCOPE** | _ISINSCOPE(X)_ | Return True if _X_ is current level in the matrix. |
+| **RANKX** | _RANKX(W,X,<value>,Y,Z_) | Determine the ranking of W based on _X_ in _Y_ (**ASD or DESC**) order. If happen to be ties, use _Z_ as tiebreaker.|
+| **CALCULATETABLE**| _CALCULATETABLE(X,Y)_ | Create Table from _X_ filtered by _Y_. |
+| **VALUES**| _VALUES(X)_ | Convert _X_ column into as list. |
+| **ALLSELECTED**| _ALLSELECTED(X)_ | Return **all** values in _X_ **ignore internal filter** but **preserve external slicer filters**. |
+
+The measure of _Top Rank Colour_ (for better focus) that applied in background colour under _Top 3 Revenue_:
+```sql
+Top Rank Colour = 
+VAR ProductRank = 
+    RANKX(
+        CALCULATETABLE(
+            VALUES('retail_chocolate_syn products'[Full Product Name]),
+            ALLSELECTED('retail_chocolate_syn products'[Full Product Name])
+        ),
+        [Top 3 Revenue],
+        ,
+        DESC, Dense
+    )
+RETURN
+    IF(
+        ProductRank = 1 && [Top 3 Revenue] > 0, 
+        "#73FF00", //Bright Green
+        "#D2E9D6" //Pale Bright Green
+    )
+```
+#### Troubleshooting and the solution on matrix table
+Problem: Found out that there the rank 1 product name shows blank.
+
+<p align="center">
+  <img src="media/powerbi/error.png" width="450" title="MainBody>
+</p>
+
+---
+
+Cause: 
+* This is due to missing entry of **P0000** and **P0201** _product_id_ in _products table_ (**dimension**).
+* It will return as blank even there is record of **P0000** and **P0201** in _sales table_ (**fact**).
+
+Solution:
+* Add record of **P0000** and **P0201** as unknown promotion in MySQL server and refresh in PowerBI. The data will updated automatically and reflected on the interactive dashboard.
+* Use this sql query to add the record:
+```sql
+INSERT INTO 
+  products (product_id, product_name, brand, category, cocoa_percent, weight_g, full_product_name)
+VALUES 
+	('P0000', 'Unknown Product (P001)', 'Unknown', 'Unknown', 0, 0, 'Unknown Product (P001)'),
+	('P0201', 'Unknown Product (P002)', 'Unknown', 'Unknown', 0, 0, 'Unknown Product (P002)')
+```
+
+Here is the overview of main body of the dashboard:
+<p align="center">
+  <img src="media/powerbi/4.png" width="900" title="MainBody>
+  <br>
+</p>
+
+---
 
 #### Buisness Insights
 
