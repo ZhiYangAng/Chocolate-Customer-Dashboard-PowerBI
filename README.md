@@ -359,11 +359,10 @@ RETURN
 Problem: Found out that there the rank 1 product name shows blank.
 
 <p align="center">
-  <img src="media/powerbi/error.png" width="450" title="MainBody>
-  <br>  
+  <img src="media/powerbi/error.png" height="400" title="error">
+  <br>
 </p>
 
----
 
 Cause: 
 * This is due to missing entry of **P0000** and **P0201** _product_id_ in _products table_ (**dimension**).
