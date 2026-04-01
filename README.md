@@ -360,6 +360,7 @@ Problem: Found out that there the rank 1 product name shows blank.
 
 <p align="center">
   <img src="media/powerbi/error.png" width="450" title="MainBody>
+  <br>  
 </p>
 
 ---
