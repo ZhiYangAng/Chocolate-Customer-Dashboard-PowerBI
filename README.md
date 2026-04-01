@@ -371,6 +371,7 @@ Cause:
 Solution:
 * Add record of **P0000** and **P0201** as unknown promotion in MySQL server and refresh in PowerBI. The data will updated automatically and reflected on the interactive dashboard.
 * Use this sql query to add the record:
+
 ```sql
 INSERT INTO 
   products (product_id, product_name, brand, category, cocoa_percent, weight_g, full_product_name)
