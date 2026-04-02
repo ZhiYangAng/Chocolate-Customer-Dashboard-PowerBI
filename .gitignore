@@ -3,6 +3,19 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Power BI temporary files
+*.tmp
+*.temp
+*.pbit
+*.pbip
+*.pbir
+
+# Power BI Desktop backup files
+*.bak
+
+# Power BI Desktop local settings
+User.zip
+
 # User-specific files
 *.rsuser
 *.suo
