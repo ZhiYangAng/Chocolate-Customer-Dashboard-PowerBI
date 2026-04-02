@@ -382,17 +382,34 @@ VALUES
 
 Here is the overview of main body of the dashboard:
 <p align="center">
-  <img src="media/powerbi/4.png" width="900" title="MainBody>
+  <img src="media/powerbi/4.png" width="900" title="MainBody">
   <br>
 </p>
 
 ---
 
 #### Buisness Insights
+Let look at the overview of the dashboard.
+
+<p align="center">
+  <img src="media/powerbi/2.png" width="900" title="DasboardOverview">
+  <br>
+</p>
 
 
-## **Directories**
-* [***/Dashboard***](./Dashboard/): Contains the final dashboard .pbix file.
+1. The company generated **$25.49M** in _total revenue_ with a _Transaction Per Customer (TPC)_ of **20.00** and _Revenue Per Customer (RPC)_ of **$509.72**. In the **2023-2024**, a high _TPC_ of **20** indicates strong repeat behavior and customer retention. The high _TPC_ mades strong _RPC_ of **$509.72**, suggesting that customers are not one-time buyers but long term brand supporter. These metrics will serve as the baseline _KPIs (Key Performance Indicators)_ for the upcoming year. The company can monitor the metric to effectively track the overall sales performance and customer satisfaction.
+2. There is nearly equally distribution of _50/50_ between loyalty membbers and non-members. However, the _Average Revenue per Transaction_ for members (**$25.45**) is slightly lower than for non-members (**$25.52**). This observation indicates that the current loyalty program is not effectivly driving higher spending behavior and privellage of loyalty member is not attractive mades the customers not willing to join. Company should re-evaluate the membership value proposition. The company should introduce "Member Only" bundles or tiered reward as incentives for buying higher volume and attract customers to join the loyalty membership program.
+3. Most of the customers are **middle aged (41-60)**, and the composition of loyalty member and non-member show equally distributed across all age group. The company should launch age-targeted campaigns such as energy snack promotion activities for young adults, and Hamper/Gift promotion that attract **middle aged to senior citizen**s customers to purchase.
+4. Customers loves to purchase chocolate in the **airport** as the **airport** sales is the highest followed by malls and online. Many of the customers have the behavior of buying chocolate as snacks or last-minute gift before or after flights. The company could expand the buisness by intergrating online channel towards airport channel to implement "click and collect" strategy and selling travel-sied gift packs. These strategies allows the customers travel ease with travel-sized packs of chocolate and without worrying being late for a flight.
+5. _Mars Milk Chocolate 50% (Praline) - 80g_ recorded the highest revenue across age group except **Senior Citizens (61+)** who favour towards _Cadbury Dark Chocolate 70% (Praline) - 100g_. This shows that the taste preferences shift from milk chocolate to darker chocolate in older demographics. The company should optimise inventory by placing Mars Milk Chocolate in areas have higher volume of younger shoppers, while implement Dark Chocolate promotional event with health theme targeting **Senior Citizens (61+)**.
+
+Feel free to download the [file](./Dashboard/Chocolate%20Customer%20Dashboard.pbix) to interact dashboard with slicer for more deeper insights.
+
+Here is the [link](https://www.linkedin.com/in/zhi-yang-ang-jonathan/) to my linkedin profile.
+
+---
+## **Directory**
+* [***/Dashboard**](./Dashboard/): Contains the final dashboard .pbix file.
 * [***/SQL Query***](./SQL%20Query/): Includes .sql scripts for table creation and data analysis.
 * [***/media***](./media/): Contains screenshots and the interactive GIF demo.
 * [***/data***](./data/): Contains [***cleaned data***](./data/cleaneddata/) and [***Excel Power Query***](./data/Chocolate%20Power%20Query.xlsx) that merge from [***raw data***](./data/rawdata/). 
