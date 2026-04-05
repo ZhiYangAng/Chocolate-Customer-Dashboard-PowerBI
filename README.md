@@ -75,6 +75,7 @@ The process of **preprocessing** applied in the power query are:
 
 #### **Products**
 1. Created full_product_name column to combine product_name, brand, category and weight_g
+
       **Format**: > *"brand" "product_name" ("category") - "weighted_g"g*
 ```powerquery
 = Table.AddColumn(#"Filtered Rows", "full_product_name", each [brand]&" "& [product_name]&"
